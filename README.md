@@ -1,11 +1,11 @@
-# 🚀 Ai.lonso — Cognizant x Aston Martin F1 Innovation Challenge  
+# Ai.lonso — Cognizant x Aston Martin F1 Innovation Challenge  
 
 This project was built as part of the **Cognizant Idea-thon / Innovation Challenge**, showcasing AI-powered fan engagement for the **Aston Martin Aramco F1 Team**.  
 Developed with **Next.js 14**, **TypeScript**, and **Vercel**, the solution focuses on real-time intelligence, dynamic personalization, and interactive racing experiences — all designed and implemented by Hasnain Niazi.  
 
 ---
 
-## 🧩 Tech Stack
+## Tech Stack
 
 - **Next.js 14** — App Router + Server Actions  
 - **TypeScript** — end-to-end type safety  
@@ -16,7 +16,7 @@ Developed with **Next.js 14**, **TypeScript**, and **Vercel**, the solution focu
 
 ---
 
-## ⚙️ Getting Started
+## Getting Started
 
 Run the development server:
 
