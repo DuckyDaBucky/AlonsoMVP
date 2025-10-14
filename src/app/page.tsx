@@ -1,5 +1,5 @@
-import AilonsoDashboardSection from "@/components/AilonsoDashboardSection";
+import AilonsoDashboard from "@/components/dashboard/AilonsoDashboard";
 
 export default function Home() {
-  return <AilonsoDashboardSection />;
+  return <AilonsoDashboard />;
 }
