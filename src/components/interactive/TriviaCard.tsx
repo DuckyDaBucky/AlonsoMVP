@@ -5,7 +5,7 @@
 
 import { useState } from 'react';
 import { Card } from '@/components/ui/Card';
-import { TRIVIA } from '@/data/constants';
+import { TRIVIA, TRIVIA_QUESTIONS } from '@/data/constants';
 
 interface TriviaCardProps {
   onAnswer: (message: string) => void;
@@ -14,6 +14,28 @@ interface TriviaCardProps {
 export function TriviaCard({ onAnswer }: TriviaCardProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [showResult, setShowResult] = useState(false);
+  const [currentQuestion] = useState(() => {
+    if (Array.isArray(TRIVIA_QUESTIONS) && TRIVIA_QUESTIONS.length > 0) {
+      const index = Math.floor(Math.random() * TRIVIA_QUESTIONS.length);
+      return TRIVIA_QUESTIONS[index];
+    }
+    // Fallback to legacy single-question shape
+    return {
+      question: TRIVIA.question,
+      options: TRIVIA.options,
+      correctAnswer: TRIVIA.correctAnswer,
+      correctMessage:
+        'Correct! Fernando won Monaco in 2006 and 2007 with Renault. Those were legendary victories!',
+      incorrectMessage:
+        'Not quite! Fernando actually won Monaco 2 times - in 2006 and 2007 with Renault. Incredible Monaco performances!',
+    } as {
+      question: string;
+      options: string[];
+      correctAnswer: string;
+      correctMessage: string;
+      incorrectMessage: string;
+    };
+  });
 
   const handleAnswer = (answer: string) => {
     if (showResult) return;
@@ -22,9 +44,9 @@ export function TriviaCard({ onAnswer }: TriviaCardProps) {
     setShowResult(true);
     
     setTimeout(() => {
-      const message = answer === TRIVIA.correctAnswer
-        ? `Correct! Fernando won Monaco in 2006 and 2007 with Renault. Those were legendary victories!`
-        : `Not quite! Fernando actually won Monaco 2 times - in 2006 and 2007 with Renault. Incredible Monaco performances!`;
+      const message = answer === currentQuestion.correctAnswer
+        ? currentQuestion.correctMessage
+        : currentQuestion.incorrectMessage;
       
       onAnswer(message);
     }, 500);
@@ -44,19 +66,19 @@ export function TriviaCard({ onAnswer }: TriviaCardProps) {
       </div>
 
       <p className="text-sm text-white/80 mb-3" style={{ fontFamily: 'Inter, sans-serif' }}>
-        {TRIVIA.question}
+        {currentQuestion.question}
       </p>
 
       <div className="space-y-2">
-        {TRIVIA.options.map((option) => (
+        {currentQuestion.options.map((option) => (
           <button
             key={option}
             onClick={() => handleAnswer(option)}
             disabled={showResult}
             className={`w-full py-2 px-3 rounded-lg text-sm font-medium transition-all ${
-              showResult && option === TRIVIA.correctAnswer
+              showResult && option === currentQuestion.correctAnswer
                 ? 'bg-green-600 text-white border-2 border-green-400 shadow-lg shadow-green-600/30'
-                : showResult && option === selectedAnswer && option !== TRIVIA.correctAnswer
+                : showResult && option === selectedAnswer && option !== currentQuestion.correctAnswer
                 ? 'bg-red-600 text-white border-2 border-red-400 shadow-lg shadow-red-600/30'
                 : selectedAnswer === option
                 ? 'bg-gradient-to-r from-[#00C39A] to-[#00B0A9] text-white shadow-lg shadow-[#00C39A]/30'

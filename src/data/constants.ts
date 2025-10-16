@@ -47,11 +47,77 @@ export const INITIAL_FAN_ACTIVITIES: FanActivity[] = [
 export const FAN_NAMES = ['Alex', 'Sarah', 'Carlos', 'Hannah', 'Luis', 'Mia'];
 
 // Trivia data
+// Backwards-compatible single entry (kept in case other components import TRIVIA)
 export const TRIVIA = {
   question: 'How many times has Fernando Alonso won the Monaco GP?',
   options: ['1 time', '2 times', 'Never won'],
   correctAnswer: '2 times',
 };
+
+// Expanded Alonso trivia pool
+export const TRIVIA_QUESTIONS = [
+  {
+    question: 'How many times has Fernando Alonso won the Monaco GP?',
+    options: ['1 time', '2 times', 'Never won'],
+    correctAnswer: '2 times',
+    correctMessage:
+      'Correct! Fernando won Monaco in 2006 and 2007 with Renault — iconic drives.',
+    incorrectMessage:
+      'Not quite! He won Monaco 2 times — in 2006 and 2007 with Renault.',
+  },
+  {
+    question: 'Which car number has Fernando Alonso raced with most recently?',
+    options: ['14', '8', '33'],
+    correctAnswer: '14',
+    correctMessage: 'Yes! Number 14 — a fan-favorite tied closely to his brand.',
+    incorrectMessage: 'It\'s 14 — the number most associated with Alonso in F1.',
+  },
+  {
+    question: 'With which team did Alonso win his two F1 World Championships?',
+    options: ['Ferrari', 'Renault', 'McLaren'],
+    correctAnswer: 'Renault',
+    correctMessage:
+      'Correct! Back-to-back titles with Renault in 2005 and 2006.',
+    incorrectMessage:
+      'It was Renault — titles came in 2005 and 2006.',
+  },
+  {
+    question: 'Which Triple Crown event has Alonso won outside F1?',
+    options: ['Indy 500', 'Le Mans 24 Hours', 'Monaco GP'],
+    correctAnswer: 'Le Mans 24 Hours',
+    correctMessage: 'Right! He won Le Mans twice with Toyota (2018, 2019).',
+    incorrectMessage: 'Le Mans — Alonso won it in 2018 and 2019 with Toyota.',
+  },
+  {
+    question: 'What year did Alonso debut in Formula 1?',
+    options: ['2001', '2003', '2005'],
+    correctAnswer: '2001',
+    correctMessage: 'Correct — he debuted in 2001 with Minardi.',
+    incorrectMessage: '2001 — his F1 debut came with Minardi.',
+  },
+  {
+    question: 'Which team did Alonso rejoin in 2023 to score frequent podiums?',
+    options: ['Ferrari', 'Aston Martin', 'Alpine'],
+    correctAnswer: 'Aston Martin',
+    correctMessage:
+      'Yes! Aston Martin — a blistering start to 2023 with multiple podiums.',
+    incorrectMessage: 'Aston Martin — he delivered podiums straight away in 2023.',
+  },
+  {
+    question: 'How many F1 World Championships does Alonso have?',
+    options: ['2', '3', '1'],
+    correctAnswer: '2',
+    correctMessage: 'Correct — two titles: 2005 and 2006.',
+    incorrectMessage: 'Two — 2005 and 2006 with Renault.',
+  },
+  {
+    question: 'At which circuit did Alonso take his first F1 victory?',
+    options: ['Hungaroring', 'Monza', 'Sepang'],
+    correctAnswer: 'Hungaroring',
+    correctMessage: 'Correct — 2003 Hungarian GP with Renault.',
+    incorrectMessage: 'Hungaroring — he won there in 2003 for his first F1 victory.',
+  },
+];
 
 // Monaco GP data
 export const MONACO_GP = {

@@ -5,11 +5,12 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export function Header() {
   return (
     <header className="mb-3">
-      <div className="flex items-center justify-between mb-2">
+      <div className="grid grid-cols-3 items-center mb-2">
         {/* Left: Ai.lonso Logo */}
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
@@ -25,17 +26,31 @@ export function Header() {
           />
         </motion.div>
 
+        {/* Middle: Nav Links */}
+        <motion.nav
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex justify-center"
+        >
+          <Link
+            href="/gallery"
+            className="text-xs px-3 py-1 rounded-full border border-[#00B0A9]/30 hover:border-[#00C39A]/50 bg-[#0A0A0A] text-white/80 hover:text-white"
+          >
+            Gallery
+          </Link>
+        </motion.nav>
+
         {/* Right: Partner Logo */}
         <motion.div 
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex items-center gap-4"
+          className="flex items-center justify-end"
         >
           <Image
             src="/Aston_Martin_Cognizant_F1_Team.png"
             alt="Aston Martin Cognizant F1 Team"
-            width={280}
-            height={90}
+            width={220}
+            height={70}
             className="object-contain invert"
           />
         </motion.div>
