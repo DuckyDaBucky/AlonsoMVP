@@ -14,7 +14,7 @@ interface TriviaCardProps {
 export function TriviaCard({ onAnswer }: TriviaCardProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [showResult, setShowResult] = useState(false);
-  const [currentQuestion] = useState(() => {
+  const [currentQuestion, setCurrentQuestion] = useState(() => {
     if (Array.isArray(TRIVIA_QUESTIONS) && TRIVIA_QUESTIONS.length > 0) {
       const index = Math.floor(Math.random() * TRIVIA_QUESTIONS.length);
       return TRIVIA_QUESTIONS[index];
@@ -50,6 +50,20 @@ export function TriviaCard({ onAnswer }: TriviaCardProps) {
       
       onAnswer(message);
     }, 500);
+
+    // After showing result, wait 2 seconds and then load a new random question
+    setTimeout(() => {
+      if (Array.isArray(TRIVIA_QUESTIONS) && TRIVIA_QUESTIONS.length > 0) {
+        let nextIndex = Math.floor(Math.random() * TRIVIA_QUESTIONS.length);
+        // Try to avoid repeating the same question consecutively
+        if (TRIVIA_QUESTIONS[nextIndex].question === currentQuestion.question && TRIVIA_QUESTIONS.length > 1) {
+          nextIndex = (nextIndex + 1) % TRIVIA_QUESTIONS.length;
+        }
+        setCurrentQuestion(TRIVIA_QUESTIONS[nextIndex]);
+      }
+      setSelectedAnswer(null);
+      setShowResult(false);
+    }, 2500); // 500ms feedback delay + 2000ms wait
   };
 
   return (
